@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Profile — HRCore</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* SAME CSS AS PROFILE PAGE */
+    * { box-sizing:border-box; margin:0; padding:0; }
+
+    :root {
+      --bg:#0d0f14; --surface:#13161e; --card:#181c27; --border:#252a38;
+      --accent:#4f8ef7; --accent2:#a78bfa; --text:#e8eaf0; --muted:#6b7280;
+    }
+
+    body {
+      font-family:'DM Sans',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      display:flex;
+      min-height:100vh;
+    }
+
+    .sidebar {
+      width:220px;
+      background:var(--surface);
+      border-right:1px solid var(--border);
+      padding:20px;
+    }
+
+    .nav-item {
+      display:block;
+      padding:10px;
+      color:#9ca3af;
+      text-decoration:none;
+    }
+
+    .nav-item:hover {
+      color:white;
+    }
+
+    .main {
+      flex:1;
+      padding:30px;
+    }
+
+    .card {
+      background:var(--card);
+      border-radius:14px;
+      padding:25px;
+      max-width:600px;
+      margin:auto;
+    }
+
+    h2 {
+      margin-bottom:20px;
+    }
+
+    label {
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    input {
+      width:100%;
+      padding:10px;
+      margin:8px 0 15px;
+      border-radius:8px;
+      border:1px solid var(--border);
+      background:var(--surface);
+      color:white;
+    }
+
+    button {
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:white;
+      cursor:pointer;
+    }
+
+    .back {
+      margin-top:15px;
+      text-align:center;
+    }
+
+    .back a {
+      color:var(--accent);
+      text-decoration:none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <a class="nav-item" th:href="@{/auth/dashboard}">🏠 Dashboard</a>
+  <a class="nav-item" th:href="@{/auth/profile}">👤 Profile</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="card">
+    <h2>Edit Profile</h2>
+
+    <form th:action="@{/auth/profile/update}" method="post" th:object="${user}">
+      
+      <input type="hidden" th:field="*{id}"/>
+
+      <label>Full Name</label>
+      <input type="text" th:field="*{name}" required>
+
+      <label>Email</label>
+      <input type="email" th:field="*{email}" required>
+
+      <button type="submit">Update Profile</button>
+
+    </form>
+
+    <div class="back">
+      <a th:href="@{/auth/profile}">⬅ Back to Profile</a>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

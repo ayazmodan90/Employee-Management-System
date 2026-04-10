@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Home — HRCore EMS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+    --bg: #0d0f14;
+    --card: #181c27;
+    --border: #252a38;
+    --accent: #4f8ef7;
+    --accent2: #a78bfa;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+}
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background glows */
+.bg-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .12;
+    pointer-events: none;
+}
+.bg-glow.blue { width:500px;height:500px;background:#4f8ef7;top:-100px;right:-100px; }
+.bg-glow.purple { width:400px;height:400px;background:#a78bfa;bottom:-80px;left:-80px; }
+
+/* Card */
+.container {
+    background: var(--card);
+    padding: 60px 50px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 40px 100px rgba(0,0,0,.5);
+    text-align: center;
+    z-index: 1;
+}
+
+/* Heading */
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--accent);
+}
+
+/* Buttons */
+a.button {
+    display: inline-block;
+    margin: 10px 15px;
+    padding: 14px 30px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: opacity .2s, transform .1s;
+}
+a.button:hover { opacity: 0.9; transform: translateY(-2px); }
+a.button:active { transform: translateY(0); }
+
+/* Small text */
+p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg-glow blue"></div>
+<div class="bg-glow purple"></div>
+
+<div class="container">
+    <h2>Welcome to EMS</h2>
+    <a th:href="@{/auth/login}" class="button">Login</a>
+    <a th:href="@{/auth/register}" class="button">Register</a>
+    <p>Employee Management System — Manage your team efficiently</p>
+</div>
+
+</body>
+</html>

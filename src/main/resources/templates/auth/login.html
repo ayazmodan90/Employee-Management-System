@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - HRCore</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg,#667eea,#764ba2);
+        }
+
+        .login-box {
+            width: 350px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #667eea;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <h2>Login</h2>
+
+    <form th:action="@{/auth/login}" method="post" th:object="${user}">
+
+        <input type="email" th:field="*{email}" placeholder="Enter Email" required>
+        <input type="password" th:field="*{password}" placeholder="Enter Password" required>
+
+        <button type="submit">Login</button>
+
+        <p class="error" th:text="${error}"></p>
+
+    </form>
+
+    <div class="links">
+        <a th:href="@{/auth/register}">Create Account</a><br>
+        <a th:href="@{/auth/forgot-password}">Forgot Password?</a>
+    </div>
+
+</div>
+
+</body>
+</html>

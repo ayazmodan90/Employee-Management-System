@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Department</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #38bdf8;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: none;
+            border-radius: 6px;
+            background: #334155;
+            color: #fff;
+        }
+
+        input:focus {
+            outline: none;
+            border: 1px solid #38bdf8;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #3b82f6;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #94a3b8;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-container">
+
+    <h2>✏ Edit Department</h2>
+
+    <form th:action="@{/admin/departments/update}" 
+          method="post" 
+          th:object="${department}">
+
+        <!-- Hidden ID -->
+        <input type="hidden" th:field="*{id}">
+
+        <label>Department Name</label>
+        <input type="text" th:field="*{name}" required>
+
+        <label>Description</label>
+        <input type="text" th:field="*{description}" required>
+
+        <button type="submit" class="btn">Update Department</button>
+    </form>
+
+    <a th:href="@{/admin/departments}" class="back-link">⬅ Back to Departments</a>
+
+</div>
+
+</body>
+</html>

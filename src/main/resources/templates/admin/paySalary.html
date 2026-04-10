@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pay Salary — HRCore</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+:root {
+  --bg:#0d0f14;
+  --card:#181c27;
+  --border:#252a38;
+  --accent:#4f8ef7;
+  --accent2:#a78bfa;
+  --text:#e8eaf0;
+}
+
+body {
+  margin:0;
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+/* Card */
+.card {
+  width:400px;
+  background:var(--card);
+  padding:30px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+/* Title */
+h2 {
+  text-align:center;
+  margin-bottom:20px;
+}
+
+/* Info */
+.info {
+  margin-bottom:20px;
+  font-size:14px;
+}
+
+/* Input */
+input {
+  width:100%;
+  padding:12px;
+  margin-top:8px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#13161e;
+  color:white;
+  outline:none;
+}
+
+/* Button */
+button {
+  width:100%;
+  margin-top:20px;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+}
+
+button:hover {
+  opacity:0.85;
+}
+
+/* Back */
+.back {
+  margin-top:15px;
+  text-align:center;
+}
+
+.back a {
+  color:var(--accent);
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h2>💰 Pay Salary</h2>
+
+    <!-- Employee Info -->
+    <div class="info">
+        <p><b>Employee ID:</b> <span th:text="${employee.id}"></span></p>
+        <p><b>Name:</b>
+            <span th:text="${employee.firstName}"></span>
+            <span th:text="${employee.lastName}"></span>
+        </p>
+        <p><b>Email:</b> <span th:text="${employee.email}"></span></p>
+    </div>
+
+    <!-- Form -->
+    <form th:action="@{/admin/paySalary}" method="post">
+
+        <!-- Hidden ID -->
+        <input type="hidden" name="employeeId" th:value="${employee.id}"/>
+
+        <label>Enter Salary Amount</label>
+        <input type="number" name="amount" placeholder="Enter amount" required/>
+
+        <button type="submit">Transfer Salary</button>
+    </form>
+
+    <!-- Back -->
+    <div class="back">
+        <a th:href="@{/admin/employees}">⬅ Back to Employees</a>
+    </div>
+
+</div>
+
+</body>
+</html>
